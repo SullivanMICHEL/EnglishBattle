@@ -17,22 +17,28 @@ namespace EnglishBattle.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel model)
         {
-            Joueur joueur = new Joueur();
+            Joueur joueur;
 
             if (ModelState.IsValid)
             {
                 JoueurService joueurService = new JoueurService(new EnglishBattleEntities());
-
-                joueur = joueurService.GetItem(model.Email, model.MotDePasse);
-                if ((model.Email == joueur.email) && (model.MotDePasse == joueur.motDePasse))
+                try
                 {
-                    //Création de la partie
-                    Session["Joueur"] = joueur;
-                    return RedirectToAction("CreerPartie", "Home");
+                    joueur = joueurService.GetItem(model.Email, model.MotDePasse);
+                    if (joueur != null)
+                    {
+                        //Création de la partie
+                        Session["Joueur"] = joueur;
+                        return RedirectToAction("CreerPartie", "Home");
+                    }
+                    else
+                    {
+                        Response.Write("Email et/ou mot de passe incorrect");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("Email et/ou mot de passe incorrect");
+                    Console.WriteLine(ex.Message);
                 }
             }
             return View(model);

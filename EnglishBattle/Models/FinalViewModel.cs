@@ -12,5 +12,12 @@ namespace EnglishBattle.Models
         public Joueur joueur{ get; set; }
         public Question question { get; set; }
         public Partie partie { get; set; }
+        public List<HallOfFame> hallOfFames { get; set; }
+    }
+    public class HallOfFame
+    {
+        public string Nom;
+        public string Prenom;
+        public int Score;
     }
 }

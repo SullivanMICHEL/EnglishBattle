@@ -8,9 +8,18 @@
 new { @class = "form-horizontal", role = "form" }))
 {
     <div>
-        <p>Réponses au dernier verbe @Model.question.Verbe.baseVerbale</p>
-        <p>Participe passé : @Model.question.reponseParticipePasse</p>
-        <p>Prétérit : @Model.question.reponsePreterit</p>
+        <p>Réponses au dernier Verbe </p>
+        <ul>
+            <li>
+                Base verbale : @Model.question.Verbe.baseVerbale
+            </li>
+            <li>
+                Participe passé : @Model.question.reponseParticipePasse
+            </li>
+            <li>
+                Prétérit : @Model.question.reponsePreterit
+            </li>
+        </ul>
         <br />
         <p>@Model.joueur.nom @Model.joueur.prenom vous terminez avec un score de @Model.partie.score</p>
     </div>

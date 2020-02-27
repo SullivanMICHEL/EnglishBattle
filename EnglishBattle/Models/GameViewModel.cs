@@ -38,6 +38,10 @@ namespace EnglishBattle.Models
                     //le joueur a déjà joué
                     partieService = new PartieService(new EnglishBattleEntities());
                     newPartie = partieService.GetItem(partie.id);
+                    if (newPartie != null)
+                    {
+                        return newPartie;
+                    }
                 }
             }
             //Création de la partie

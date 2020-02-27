@@ -2,6 +2,7 @@
 using EnglishBattleModel.Data;
 using EnglishBattleModel.Data.Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
@@ -33,7 +34,6 @@ namespace EnglishBattle.Controllers
             Session["numQuestion"] = (int)Session["numQuestion"]+1;
             model.numQuestion = (int)Session["numQuestion"];
 
-            Session["partie"] = partie;
             Session["question"] = question;
 
             return View(model);
@@ -44,15 +44,12 @@ namespace EnglishBattle.Controllers
         {
             Partie partie = (Partie)Session["partie"];
             Question question= (Question)Session["question"];
-            QuestionService questionService;
-            PartieService partieService;
-            TimeSpan timeSpan;
 
             question.dateReponse = DateTime.Now;
-            questionService = new QuestionService(new EnglishBattleEntities());
+            QuestionService questionService = new QuestionService(new EnglishBattleEntities());
             questionService.Update(question);
 
-            timeSpan = (TimeSpan)(question.dateReponse - question.dateEnvoie);
+            TimeSpan timeSpan = (TimeSpan)(question.dateReponse - question.dateEnvoie);
             if (timeSpan.TotalSeconds < 60)
             {
                 //Dans les temps
@@ -60,9 +57,9 @@ namespace EnglishBattle.Controllers
                 {
                     //On incrémente le score du joueur
                     partie.score++;
-                    partieService = new PartieService(new EnglishBattleEntities());
+                    PartieService partieService = new PartieService(new EnglishBattleEntities());
                     partieService.Update(partie);
-                    
+                    Session["partie"] = partie;
                     return RedirectToAction("Index", "Game");
                 }
             }
@@ -83,6 +80,13 @@ namespace EnglishBattle.Controllers
             finalViewModel.question = question;
             finalViewModel.joueur = joueur;
             finalViewModel.message = (string)Session["resultat"];
+
+            //Calcul du HallOfFame
+            PartieService partieService = new PartieService(new EnglishBattleEntities());
+            List<Partie> parties = partieService.GetList();
+            
+
+
             return View(finalViewModel);
         }
 
