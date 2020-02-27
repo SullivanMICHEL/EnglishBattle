@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnglishBattleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Joueur">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="idVille" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="motDePasse" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="niveau" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Partie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idJoueur" Type="int" Nullable="false" />
+    <Property Name="score" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPartie" Type="int" Nullable="false" />
+    <Property Name="idVerbe" Type="int" Nullable="false" />
+    <Property Name="reponseParticipePasse" Type="varchar" MaxLength="200" />
+    <Property Name="reponsePreterit" Type="varchar" MaxLength="200" />
+    <Property Name="dateEnvoie" Type="datetime" Nullable="false" />
+    <Property Name="dateReponse" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Verbe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="baseVerbale" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="participePasse" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="preterit" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="traduction" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ville">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="codePostal" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Joueur_Ville">
+    <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+    <End Role="Joueur" Type="Self.Joueur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ville">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Joueur">
+        <PropertyRef Name="idVille" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partie_Joueur">
+    <End Role="Joueur" Type="Self.Joueur" Multiplicity="1" />
+    <End Role="Partie" Type="Self.Partie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Joueur">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partie">
+        <PropertyRef Name="idJoueur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Partie">
+    <End Role="Partie" Type="Self.Partie" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partie">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="idPartie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Question">
+    <End Role="Verbe" Type="Self.Verbe" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Verbe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="idVerbe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EnglishBattleModelStoreContainer">
+    <EntitySet Name="Joueur" EntityType="Self.Joueur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partie" EntityType="Self.Partie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Verbe" EntityType="Self.Verbe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ville" EntityType="Self.Ville" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Joueur_Ville" Association="Self.FK_Joueur_Ville">
+      <End Role="Ville" EntitySet="Ville" />
+      <End Role="Joueur" EntitySet="Joueur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partie_Joueur" Association="Self.FK_Partie_Joueur">
+      <End Role="Joueur" EntitySet="Joueur" />
+      <End Role="Partie" EntitySet="Partie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Partie" Association="Self.FK_Question_Partie">
+      <End Role="Partie" EntitySet="Partie" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Question" Association="Self.FK_Question_Question">
+      <End Role="Verbe" EntitySet="Verbe" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

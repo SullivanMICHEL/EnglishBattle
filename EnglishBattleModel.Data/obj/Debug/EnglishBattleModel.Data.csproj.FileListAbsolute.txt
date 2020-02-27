@@ -1,0 +1,11 @@
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EnglishBattleModel.Data.dll.config
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EnglishBattleModel.Data.dll
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EnglishBattleModel.Data.pdb
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EntityFramework.dll
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EntityFramework.xml
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\obj\Debug\EnglishBattleModel.Data.csproj.CopyComplete
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\obj\Debug\EnglishBattleModel.Data.dll
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\obj\Debug\EnglishBattleModel.Data.pdb
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattleModel.Data\obj\Debug\EnglishBattleModel.Data.csprojAssemblyReference.cache

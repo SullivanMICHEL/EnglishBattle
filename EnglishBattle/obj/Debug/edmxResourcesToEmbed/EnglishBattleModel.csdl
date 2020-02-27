@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnglishBattleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Joueur">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idVille" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="motDePasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="niveau" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ville" Relationship="Self.FK_Joueur_Ville" FromRole="Joueur" ToRole="Ville" />
+    <NavigationProperty Name="Partie" Relationship="Self.FK_Partie_Joueur" FromRole="Joueur" ToRole="Partie" />
+  </EntityType>
+  <EntityType Name="Partie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idJoueur" Type="Int32" Nullable="false" />
+    <Property Name="score" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Joueur" Relationship="Self.FK_Partie_Joueur" FromRole="Partie" ToRole="Joueur" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_Partie" FromRole="Partie" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPartie" Type="Int32" Nullable="false" />
+    <Property Name="idVerbe" Type="Int32" Nullable="false" />
+    <Property Name="reponseParticipePasse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="reponsePreterit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="dateEnvoie" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dateReponse" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Partie" Relationship="Self.FK_Question_Partie" FromRole="Question" ToRole="Partie" />
+    <NavigationProperty Name="Verbe" Relationship="Self.FK_Question_Question" FromRole="Question" ToRole="Verbe" />
+  </EntityType>
+  <EntityType Name="Verbe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="baseVerbale" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="participePasse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preterit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="traduction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_Question" FromRole="Verbe" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Ville">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codePostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Joueur" Relationship="Self.FK_Joueur_Ville" FromRole="Ville" ToRole="Joueur" />
+  </EntityType>
+  <Association Name="FK_Joueur_Ville">
+    <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+    <End Role="Joueur" Type="Self.Joueur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ville">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Joueur">
+        <PropertyRef Name="idVille" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partie_Joueur">
+    <End Role="Joueur" Type="Self.Joueur" Multiplicity="1" />
+    <End Role="Partie" Type="Self.Partie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Joueur">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partie">
+        <PropertyRef Name="idJoueur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Partie">
+    <End Role="Partie" Type="Self.Partie" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partie">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="idPartie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Question">
+    <End Role="Verbe" Type="Self.Verbe" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Verbe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="idVerbe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EnglishBattleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Joueur" EntityType="Self.Joueur" />
+    <EntitySet Name="Partie" EntityType="Self.Partie" />
+    <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="Verbe" EntityType="Self.Verbe" />
+    <EntitySet Name="Ville" EntityType="Self.Ville" />
+    <AssociationSet Name="FK_Joueur_Ville" Association="Self.FK_Joueur_Ville">
+      <End Role="Ville" EntitySet="Ville" />
+      <End Role="Joueur" EntitySet="Joueur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partie_Joueur" Association="Self.FK_Partie_Joueur">
+      <End Role="Joueur" EntitySet="Joueur" />
+      <End Role="Partie" EntitySet="Partie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Partie" Association="Self.FK_Question_Partie">
+      <End Role="Partie" EntitySet="Partie" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Question" Association="Self.FK_Question_Question">
+      <End Role="Verbe" EntitySet="Verbe" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

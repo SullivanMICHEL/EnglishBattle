@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EnglishBattleModelStoreContainer" CdmEntityContainer="EnglishBattleEntities">
+    <EntitySetMapping Name="Joueur">
+      <EntityTypeMapping TypeName="EnglishBattleModel.Joueur">
+        <MappingFragment StoreEntitySet="Joueur">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="idVille" ColumnName="idVille" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="motDePasse" ColumnName="motDePasse" />
+          <ScalarProperty Name="niveau" ColumnName="niveau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partie">
+      <EntityTypeMapping TypeName="EnglishBattleModel.Partie">
+        <MappingFragment StoreEntitySet="Partie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idJoueur" ColumnName="idJoueur" />
+          <ScalarProperty Name="score" ColumnName="score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="EnglishBattleModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idPartie" ColumnName="idPartie" />
+          <ScalarProperty Name="idVerbe" ColumnName="idVerbe" />
+          <ScalarProperty Name="reponseParticipePasse" ColumnName="reponseParticipePasse" />
+          <ScalarProperty Name="reponsePreterit" ColumnName="reponsePreterit" />
+          <ScalarProperty Name="dateEnvoie" ColumnName="dateEnvoie" />
+          <ScalarProperty Name="dateReponse" ColumnName="dateReponse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Verbe">
+      <EntityTypeMapping TypeName="EnglishBattleModel.Verbe">
+        <MappingFragment StoreEntitySet="Verbe">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="baseVerbale" ColumnName="baseVerbale" />
+          <ScalarProperty Name="participePasse" ColumnName="participePasse" />
+          <ScalarProperty Name="preterit" ColumnName="preterit" />
+          <ScalarProperty Name="traduction" ColumnName="traduction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ville">
+      <EntityTypeMapping TypeName="EnglishBattleModel.Ville">
+        <MappingFragment StoreEntitySet="Ville">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

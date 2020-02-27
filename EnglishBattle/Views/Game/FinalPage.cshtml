@@ -1,0 +1,22 @@
+﻿@model EnglishBattle.Models.FinalViewModel
+@{
+    ViewBag.Title = "English Battle";
+}
+
+<h1>@Model.message</h1>
+@using (Html.BeginForm("CreerPartie", "Home", FormMethod.Post,
+new { @class = "form-horizontal", role = "form" }))
+{
+    <div>
+        <p>Réponses au dernier verbe @Model.question.Verbe.baseVerbale</p>
+        <p>Participe passé : @Model.question.reponseParticipePasse</p>
+        <p>Prétérit : @Model.question.reponsePreterit</p>
+        <br />
+        <p>@Model.joueur.nom @Model.joueur.prenom vous terminez avec un score de @Model.partie.score</p>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Rejouer" />
+        </div>
+    </div>
+}

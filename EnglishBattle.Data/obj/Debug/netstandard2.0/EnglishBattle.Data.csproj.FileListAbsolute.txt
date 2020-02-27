@@ -1,0 +1,5 @@
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattle.Data\bin\Debug\netstandard2.0\EnglishBattle.Data.deps.json
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattle.Data\bin\Debug\netstandard2.0\EnglishBattle.Data.dll
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattle.Data\obj\Debug\netstandard2.0\EnglishBattle.Data.csprojAssemblyReference.cache
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattle.Data\obj\Debug\netstandard2.0\EnglishBattle.Data.AssemblyInfoInputs.cache
+C:\Users\sulli\Documents\EPSI\B3\.NET\EnglishBattle\EnglishBattle.Data\obj\Debug\netstandard2.0\EnglishBattle.Data.AssemblyInfo.cs

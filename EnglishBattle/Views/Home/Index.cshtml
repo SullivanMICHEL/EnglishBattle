@@ -1,0 +1,32 @@
+﻿@model EnglishBattle.Models.LoginViewModel
+@{
+    ViewBag.Title = "Bienvenue sur English Battle !";
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post,
+    new { @class = "form-horizontal", role = "form" }))
+{
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MotDePasse, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.MotDePasse, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Connexion" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
