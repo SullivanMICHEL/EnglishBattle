@@ -19,5 +19,12 @@ namespace EnglishBattle.Models
         public string Nom;
         public string Prenom;
         public int Score;
+
+        public HallOfFame(string nom, string prenom, int score)
+        {
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.Score = score;
+        }
     }
 }

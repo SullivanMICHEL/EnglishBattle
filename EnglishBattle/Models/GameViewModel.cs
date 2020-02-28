@@ -28,6 +28,7 @@ namespace EnglishBattle.Models
 
         public Partie LancerPartie(Joueur joueur)
         {
+            Partie newPartie = new Partie();
             //On regarde si le joueur a déja fait une partie
             //Si oui on récupère la partie concerné et on lance le jeu 
             partieService = new PartieService(new EnglishBattleEntities());
@@ -45,7 +46,7 @@ namespace EnglishBattle.Models
                 }
             }
             //Création de la partie
-            newPartie.Joueur = joueur;
+            newPartie.idJoueur = joueur.id;
 
             partieService = new PartieService(new EnglishBattleEntities());
             partieService.Insert(newPartie);

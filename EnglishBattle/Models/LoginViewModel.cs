@@ -11,10 +11,10 @@ namespace EnglishBattle.Models
         [Display(Name = "Email")]
         [Required]
         [EmailAddress]
-        public String Email { get; set; }
+        public string Email { get; set; }
         [Display(Name = "Mot de passe")]
         [Required]
         [DataType(DataType.Password)]
-        public String MotDePasse { get; set; }
+        public string MotDePasse { get; set; }
     }
 }

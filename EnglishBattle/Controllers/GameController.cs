@@ -83,9 +83,21 @@ namespace EnglishBattle.Controllers
 
             //Calcul du HallOfFame
             PartieService partieService = new PartieService(new EnglishBattleEntities());
-            List<Partie> parties = partieService.GetList();
-            
+            List<Partie> partiesTrie;
+            JoueurService joueurService;
 
+            List<Partie> parties = partieService.GetList();
+            partiesTrie = parties.OrderByDescending(p => p.score).Take(5).ToList();
+
+            List<HallOfFame> hallOfFames = new List<HallOfFame>();
+            foreach (Partie partie1 in partiesTrie)
+            {
+                joueurService = new JoueurService(new EnglishBattleEntities());
+                Joueur joueur1 = joueurService.GetItem(partie1.idJoueur);
+                hallOfFames.Add(new HallOfFame(joueur1.nom, joueur1.prenom, partie1.score));
+            }
+            finalViewModel.hallOfFames = hallOfFames;
+            Session["HallOfFame"] = hallOfFames;
 
             return View(finalViewModel);
         }
